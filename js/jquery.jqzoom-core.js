@@ -234,10 +234,11 @@
                     var largeimage = options.largeimage;
                     $(link).addClass('zoomThumbActive');
                     $(el).attr('href', largeimage);
-                    img.attr('src', smallimage);
+                    img.unbind('load').bind('load', function(){
+						obj.load();
+					}).attr('src', smallimage);
                     lens.hide();
                     stage.hide();
-                    obj.load();
                 } else {
                     alert('ERROR :: Missing parameter for largeimage or smallimage.');
                     throw 'ERROR :: Missing parameter for largeimage or smallimage.';
